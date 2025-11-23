@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.6 Momento de una fuerza</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header>
+    <h1>1.6 Momento de una fuerza<br><small>respecto a un punto</small></h1>
+  </header>
+
+  <div class="container">
+    <a href="index.html" class="btn btn-back">← Volver al menú principal</a>
+
+    <div class="card">
+      <h2>📌 Teoría</h2>
+      <p>El <strong>momento</strong> (o torque) de una fuerza <strong>F</strong> respecto a un punto <em>O</em> mide su tendencia a causar rotación.</p>
+      <p><strong>Fórmula escalar (2D):</strong>  
+        <code>Mₒ = ± F · d</code>  
+        donde <code>d</code> = brazo de palanca (distancia perpendicular de <em>O</em> a la línea de acción de <strong>F</strong>).  
+        Signo: (+) → giro antihorario, (–) → horario.</p>
+    </div>
+
+    <!-- ✅ Diagrama SVG: momento con llave -->
+    <div class="diagram">
+      <h3>🔍 Diagrama: Fuerza aplicada a una llave</h3>
+      <svg width="400" height="180" viewBox="-20 -20 420 200">
+        <!-- Punto O (tornillo) -->
+        <circle cx="50" cy="100" r="8" fill="#2c3e50" />
+        <text x="42" y="88" class="vector-label">O</text>
+        
+        <!-- Llave (brazo) -->
+        <rect x="50" y="96" width="250" height="8" fill="#95a5a6" rx="4" />
+        
+        <!-- Fuerza perpendicular -->
+        <line x1="300" y1="100" x2="300" y2="40" class="force-line" />
+        
+        <!-- Brazo d (línea doble con flechas) -->
+        <line x1="50" y1="115" x2="300" y2="115" stroke="#9b59b6" stroke-width="1.5" />
+        <polygon points="50,112 45,115 50,118" fill="#9b59b6" />
+        <polygon points="300,112 305,115 300,118" fill="#9b59b6" />
+        <text x="160" y="135" class="vector-label" fill="#9b59b6">d = 0.3 m</text>
+        
+        <!-- Etiqueta de fuerza -->
+        <text x="310" y="70" class="vector-label" fill="#3498db">F = 50 N</text>
+        <text x="290" y="30" class="vector-label" fill="#27ae60">↑</text>
+        
+        <!-- Arco de giro (opcional) -->
+        <path d="M60,90 A40,40 0 0 1 90,60" fill="none" stroke="#27ae60" stroke-width="2" stroke-dasharray="5,3" />
+        <text x="95" y="55" class="vector-label" fill="#27ae60">↺</text>
+      </svg>
+    </div>
+
+    <!-- ✅ Botón para enunciado personalizado -->
+    <button id="btn-custom" class="btn btn-toggle">✏️ Usar mi propio enunciado</button>
+    
+    <div id="custom-form" style="display:none;" class="custom-problem">
+      <h3>Escribe tu enunciado aquí:</h3>
+      <textarea id="custom-statement" class="custom-input" placeholder="Ej: Una fuerza de 75 N se aplica a 0.4 m del pivote con un ángulo de 60°..."></textarea>
+      <button id="save-btn" class="btn">💾 Guardar y aplicar</button>
+      <div id="custom-saved" class="custom-saved"></div>
+    </div>
+
+    <!-- ✅ Problema estructurado -->
+    <div class="problem-structured">
+      <div class="problem-section enunciado">
+        <h3>📌 Enunciado</h3>
+        <p>Una fuerza de 50 N se aplica perpendicularmente al extremo de una llave de 0.3 m de longitud. Calcula el momento que produce respecto al centro del tornillo.</p>
+      </div>
+
+      <div class="problem-section datos">
+        <h3>📊 Datos</h3>
+        <ul>
+          <li>Fuerza: <code>F = 50 N</code></li>
+          <li>Distancia al punto O: <code>d = 0.3 m</code></li>
+          <li>Ángulo entre <strong>F</strong> y <strong>r</strong>: <code>θ = 90°</code></li>
+          <li><code>sen90° = 1</code></li>
+        </ul>
+      </div>
+
+      <div class="problem-section formula">
+        <h3>🧮 Fórmula</h3>
+        <p><code>Mₒ = F · d · senθ</code></p>
+        <p>Como <code>sen90° = 1</code> → <code>Mₒ = F · d</code></p>
+      </div>
+
+      <div class="problem-section sustitucion">
+        <h3>✏️ Sustitución</h3>
+        <p><code>Mₒ = (50 N) × (0.3 m) × (1)</code></p>
+        <p><code>Mₒ = 15 N·m</code></p>
+      </div>
+
+      <div class="problem-section resultado">
+        <h3>✅ Resultado</h3>
+        <p>El momento respecto al tornillo es de:</p>
+        <p class="resultado-final">15 N·m (sentido antihorario)</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>🎓 Proyecto académico — Física General | Estática</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

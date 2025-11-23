@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.2 Resultante de fuerzas coplanares</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header>
+    <h1>1.2 Resultante de fuerzas coplanares</h1>
+  </header>
+
+  <div class="container">
+    <a href="index.html" class="btn btn-back">← Volver al menú principal</a>
+
+    <div class="card">
+      <h2>📌 Teoría</h2>
+      <p>La <strong>resultante</strong> <strong>R</strong> es la fuerza equivalente a un sistema de fuerzas.</p>
+      <p><strong>Método analítico (componentes):</strong></p>
+      <ul>
+        <li><code>Rₓ = ΣFₓ</code></li>
+        <li><code>Rᵧ = ΣFᵧ</code></li>
+        <li><code>R = √(Rₓ² + Rᵧ²)</code></li>
+        <li><code>θ = tan⁻¹(Rᵧ / Rₓ)</code></li>
+      </ul>
+    </div>
+
+    <!-- ✅ Diagrama SVG: paralelogramo de fuerzas -->
+    <div class="diagram">
+      <h3>🔍 Diagrama: Resultante por método del paralelogramo</h3>
+      <svg width="320" height="240" viewBox="-30 -30 350 270">
+        <!-- Origen -->
+        <circle cx="50" cy="180" r="4" fill="#2c3e50" />
+        <text x="40" y="170" class="vector-label">O</text>
+        
+        <!-- Fuerza F₁ (eje x) -->
+        <line x1="50" y1="180" x2="200" y2="180" stroke="#3498db" stroke-width="2.5" marker-end="url(#arrowhead-blue)" />
+        <text x="115" y="168" fill="#3498db" font-weight="bold">F₁ = 60 N</text>
+        
+        <!-- Fuerza F₂ (eje y) -->
+        <line x1="50" y1="180" x2="50" y2="60" stroke="#e74c3c" stroke-width="2.5" marker-end="url(#arrowhead-red)" />
+        <text x="20" y="120" fill="#e74c3c" font-weight="bold">F₂ = 80 N</text>
+        
+        <!-- Líneas auxiliares (paralelogramo) -->
+        <line x1="200" y1="180" x2="200" y2="60" stroke="#bdc3c7" stroke-dasharray="4,4" />
+        <line x1="50" y1="60" x2="200" y2="60" stroke="#bdc3c7" stroke-dasharray="4,4" />
+        
+        <!-- Resultante R -->
+        <line x1="50" y1="180" x2="200" y2="60" stroke="#27ae60" stroke-width="3" marker-end="url(#arrowhead-green)" />
+        <text x="130" y="105" fill="#27ae60" font-weight="bold">R = 100 N</text>
+        
+        <!-- Ángulo θ -->
+        <path d="M65,170 A15,15 0 0 1 78,158" fill="none" stroke="#9b59b6" stroke-width="1.5" />
+        <text x="80" y="148" fill="#9b59b6">θ</text>
+        
+        <!-- Definición de marcadores -->
+        <defs>
+          <marker id="arrowhead-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#3498db" />
+          </marker>
+          <marker id="arrowhead-red" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c" />
+          </marker>
+          <marker id="arrowhead-green" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto">
+            <polygon points="0 0, 12 4, 0 8" fill="#27ae60" />
+          </marker>
+        </defs>
+      </svg>
+    </div>
+
+    <!-- ✅ Botón para enunciado personalizado -->
+    <button id="btn-custom" class="btn btn-toggle">✏️ Usar mi propio enunciado</button>
+    
+    <div id="custom-form" style="display:none;" class="custom-problem">
+      <h3>Escribe tu enunciado aquí:</h3>
+      <textarea id="custom-statement" class="custom-input" placeholder="Ej: Tres fuerzas actúan sobre un punto: F₁=30 N a 0°, F₂=40 N a 90°, F₃=20 N a 180°..."></textarea>
+      <button id="save-btn" class="btn">💾 Guardar y aplicar</button>
+      <div id="custom-saved" class="custom-saved"></div>
+    </div>
+
+    <!-- ✅ Problema estructurado -->
+    <div class="problem-structured">
+      <div class="problem-section enunciado">
+        <h3>📌 Enunciado</h3>
+        <p>Dos fuerzas actúan sobre un punto: <strong>F₁ = 60 N</strong> a 0° (eje +x) y <strong>F₂ = 80 N</strong> a 90° (eje +y). Calcula la magnitud y dirección de la resultante.</p>
+      </div>
+
+      <div class="problem-section datos">
+        <h3>📊 Datos</h3>
+        <ul>
+          <li><code>F₁ = 60 N, θ₁ = 0° → F₁ₓ = 60 N, F₁ᵧ = 0 N</code></li>
+          <li><code>F₂ = 80 N, θ₂ = 90° → F₂ₓ = 0 N, F₂ᵧ = 80 N</code></li>
+        </ul>
+      </div>
+
+      <div class="problem-section formula">
+        <h3>🧮 Fórmulas</h3>
+        <ul>
+          <li><code>Rₓ = F₁ₓ + F₂

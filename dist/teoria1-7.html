@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.7 Teorema de Varignon</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header>
+    <h1>1.7 Teorema de Varignon</h1>
+  </header>
+
+  <div class="container">
+    <a href="index.html" class="btn btn-back">← Volver al menú principal</a>
+
+    <div class="card">
+      <h2>📌 Teoría</h2>
+      <p><strong>Teorema de Varignon:</strong></p>
+      <blockquote>
+        “El momento de la resultante de un sistema de fuerzas concurrentes respecto a un punto es igual a la suma algebraica de los momentos de las fuerzas componentes respecto al mismo punto.”
+      </blockquote>
+      <p>Matemáticamente: <code>Mₒ(R) = ΣMₒ(Fᵢ)</code></p>
+    </div>
+
+    <!-- ✅ Diagrama: teorema de Varignon -->
+    <div class="diagram">
+      <h3>🔍 Diagrama: Verificación del teorema</h3>
+      <svg width="300" height="200" viewBox="-20 -20 320 220">
+        <!-- Punto O -->
+        <circle cx="50" cy="150" r="5" fill="#2c3e50" />
+        <text x="40" y="140" class="vector-label">O</text>
+        
+        <!-- Punto A (aplicación) -->
+        <circle cx="50" cy="50" r="4" fill="#e74c3c" />
+        <text x="60" y="45" class="vector-label">A</text>
+        
+        <!-- Vector r (O→A) -->
+        <line x1="50" y1="150" x2="50" y2="50" stroke="#9b59b6" stroke-width="1.5" stroke-dasharray="4,4" />
+        <text x="20" y="100" fill="#9b59b6">r = 1 m</text>
+        
+        <!-- Fuerza F₁ (→) -->
+        <line x1="50" y1="50" x2="120" y2="50" class="force-line" stroke="#3498db" />
+        <text x="85" y="40" fill="#3498db">F₁ = 30 N</text>
+        
+        <!-- Fuerza F₂ (↑) -->
+        <line x1="50" y1="50" x2="50" y2="0" class="force-line" stroke="#e74c3c" />
+        <text x="25" y="25" fill="#e74c3c">F₂ = 40 N</text>
+        
+        <!-- Resultante R -->
+        <line x1="50" y1="50" x2="120" y2="0" stroke="#27ae60" stroke-width="2.5" marker-end="url(#arrowhead)" />
+        <text x="90" y="25" fill="#27ae60">R</text>
+        
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60" />
+          </marker>
+        </defs>
+      </svg>
+    </div>
+
+    <!-- ✅ Botón para enunciado personalizado -->
+    <button id="btn-custom" class="btn btn-toggle">✏️ Usar mi propio enunciado</button>
+    
+    <div id="custom-form" style="display:none;" class="custom-problem">
+      <h3>Escribe tu enunciado aquí:</h3>
+      <textarea id="custom-statement" class="custom-input" placeholder="Ej: Tres fuerzas actúan concurrentemente en un punto. Verifica el teorema de Varignon respecto a un punto O..."></textarea>
+      <button id="save-btn" class="btn">💾 Guardar y aplicar</button>
+      <div id="custom-saved" class="custom-saved"></div>
+    </div>
+
+    <!-- ✅ Problema estructurado -->
+    <div class="problem-structured">
+      <div class="problem-section enunciado">
+        <h3>📌 Enunciado</h3>
+        <p>Dos fuerzas actúan en el punto A(0,0): <strong>F₁ = 30 N</strong> en dirección +x, y <strong>F₂ = 40 N</strong> en dirección +y. Calcula el momento total respecto al punto B(0, 5 m) usando:  
+        a) El momento de la resultante  
+        b) El teorema de Varignon (suma de momentos)</p>
+      </div>
+
+      <div class="problem-section datos">
+        <h3>📊 Datos</h3>
+        <ul>
+          <li>F₁ = 30 N i → posición: <code>𝐫₁ = (0,0)</code></li>
+          <li>F₂ = 40 N j → posición: <code>𝐫₂ = (0,0)</code></li>
+          <li>Punto B: <code>(0, 5) m</code></li>
+          <li>Vector posición desde B a A: <code>𝐫 = (0, −5) m</code></li>
+        </ul>
+      </div>
+
+      <div class="problem-section formula">
+        <h3>🧮 Fórmulas</h3>
+        <ul>
+          <li>Momento vectorial: <code>𝐌 = 𝐫 × 𝐅</code></li>
+          <li>En 2D: <code>M = x·Fᵧ − y·Fₓ</code></li>
+          <li>Varignon: <code>M_total = M₁ + M₂</code></li>
+        </ul>
+      </div>
+
+      <div class="problem-section sustitucion">
+        <h3>✏️ Sustitución</h3>
+        <p><strong>a) Por resultante:</strong>  
+        <code>R = (30 i + 40 j) N</code>  
+        <code>𝐫 = (0, −5) m</code>  
+        <code>M_B(R) = (0)(40) − (−5)(30) = 0 + 150 = 150 N·m</code></p>
+
+        <p><strong>b) Por Varignon:</strong>  
+        <code>M_B(F₁) = 0 − (−5)(30) = 150 N·m</code>  
+        <code>M_B(F₂) = (0)(40) − (−5)(0) = 0 N·m</code>  
+        <code>M_total = 150 + 0 = 150 N·m</code></p>
+      </div>
+
+      <div class="problem-section resultado">
+        <h3>✅ Resultado</h3>
+        <p>Ambos métodos dan el mismo valor:</p>
+        <p class="resultado-final"><strong>M_B = 150 N·m</strong> (antihorario)</p>
+        <p>✅ Confirma el teorema de Varignon.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>🎓 Proyecto académico — Física General | Estática</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

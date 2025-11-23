@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.5 Cuerpos rígidos y transmisibilidad</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header>
+    <h1>1.5 Cuerpos rígidos y principio<br>de transmisibilidad</h1>
+  </header>
+
+  <div class="container">
+    <a href="index.html" class="btn btn-back">← Volver al menú principal</a>
+
+    <div class="card">
+      <h2>📌 Teoría</h2>
+      <p><strong>Cuerpo rígido:</strong> Sistema de partículas donde la distancia entre cualesquiera dos partículas permanece constante.</p>
+      <p><strong>Principio de transmisibilidad:</strong></p>
+      <blockquote>
+        “El efecto externo de una fuerza sobre un cuerpo rígido es el mismo para todos los puntos de aplicación a lo largo de su línea de acción.”
+      </blockquote>
+    </div>
+
+    <!-- ✅ Diagrama: fuerza con misma línea de acción -->
+    <div class="diagram">
+      <h3>🔍 Diagrama: Fuerzas equivalentes por transmisibilidad</h3>
+      <svg width="350" height="160" viewBox="-20 -20 370 180">
+        <!-- Bloque -->
+        <rect x="80" y="60" width="180" height="60" fill="#3498db" rx="6" />
+        
+        <!-- Línea de acción (punteada) -->
+        <line x1="50" y1="90" x2="320" y2="90" stroke="#9b59b6" stroke-dasharray="5,5" stroke-width="1.5" />
+        <text x="300" y="80" fill="#9b59b6" font-size="12">Línea de acción</text>
+        
+        <!-- Fuerza 1 (izquierda) -->
+        <line x1="80" y1="90" x2="40" y2="90" class="force-line" />
+        <text x="50" y="78" fill="#3498db">F = 100 N</text>
+        
+        <!-- Fuerza 2 (centro) -->
+        <line x1="170" y1="90" x2="130" y2="90" class="force-line" stroke="#e74c3c" />
+        <text x="140" y="78" fill="#e74c3c">F = 100 N</text>
+        
+        <!-- Fuerza 3 (derecha) -->
+        <line x1="260" y1="90" x2="220" y2="90" class="force-line" stroke="#27ae60" />
+        <text x="230" y="78" fill="#27ae60">F = 100 N</text>
+        
+        <!-- Flechas indicadoras (arriba) -->
+        <line x1="80" y1="50" x2="80" y2="60" stroke="#3498db" stroke-width="1.5" marker-end="url(#dot)" />
+        <line x1="170" y1="50" x2="170" y2="60" stroke="#e74c3c" stroke-width="1.5" marker-end="url(#dot)" />
+        <line x1="260" y1="50" x2="260" y2="60" stroke="#27ae60" stroke-width="1.5" marker-end="url(#dot)" />
+        <text x="155" y="40" fill="#2c3e50">Puntos de aplicación</text>
+        
+        <defs>
+          <marker id="dot" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+            <circle cx="3" cy="3" r="2" fill="#2c3e50" />
+          </marker>
+        </defs>
+      </svg>
+    </div>
+
+    <!-- ✅ Botón para enunciado personalizado -->
+    <button id="btn-custom" class="btn btn-toggle">✏️ Usar mi propio enunciado</button>
+    
+    <div id="custom-form" style="display:none;" class="custom-problem">
+      <h3>Escribe tu enunciado aquí:</h3>
+      <textarea id="custom-statement" class="custom-input" placeholder="Ej: Una fuerza de 200 N se aplica a un bloque en tres posiciones distintas pero colineales..."></textarea>
+      <button id="save-btn" class="btn">💾 Guardar y aplicar</button>
+      <div id="custom-saved" class="custom-saved"></div>
+    </div>
+
+    <!-- ✅ Problema estructurado -->
+    <div class="problem-structured">
+      <div class="problem-section enunciado">
+        <h3>📌 Enunciado</h3>
+        <p>Una fuerza horizontal de 100 N se aplica a un bloque rígido en tres puntos diferentes, todos sobre la misma línea de acción (a 0.5 m, 1.0 m y 1.5 m de altura). ¿Cambia el movimiento del bloque en cada caso? Explica usando el principio de transmisibilidad.</p>
+      </div>
+
+      <div class="problem-section datos">
+        <h3>📊 Datos</h3>
+        <ul>
+          <li><code>F = 100 N</code> (horizontal)</li>
+          <li>3 puntos de aplicación: todos en línea recta paralela al suelo</li>
+          <li>Cuerpo: bloque rígido sobre superficie horizontal sin fricción</li>
+        </ul>
+      </div>
+
+      <div class="problem-section formula">
+        <h3>🧮 Principio clave</h3>
+        <p><strong>Principio de transmisibilidad:</strong>  
+        Si dos fuerzas tienen igual magnitud, dirección y línea de acción, producen el mismo efecto **externo** en un cuerpo rígido.</p>
+      </div>
+
+      <div class="problem-section sustitucion">
+        <h3>✏️ Análisis</h3>
+        <p>En los tres casos:</p>
+        <ul>
+          <li>Magnitud: 100 N ✔️</li>
+          <li>Dirección: horizontal ✔️</li>
+          <li>Línea de acción: misma recta horizontal ✔️</li>
+        </ul>
+        <p>→ Las tres fuerzas son equivalentes externamente.</p>
+        <p>Por lo tanto, la aceleración del CM y la ausencia de rotación son idénticas en los tres casos.</p>
+      </div>
+
+      <div class="problem-section resultado">
+        <h3>✅ Resultado</h3>
+        <p>No, <strong>el movimiento no cambia</strong>. En los tres casos:</p>
+        <ul>
+          <li>∑Fₓ = 100 N → <code>a = F/m</code> (misma aceleración del CM)</li>
+          <li>∑M = 0 → no hay rotación</li>
+        </ul>
+        <p class="resultado-final">→ El principio de transmisibilidad se cumple.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>🎓 Proyecto académico — Física General | Estática</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

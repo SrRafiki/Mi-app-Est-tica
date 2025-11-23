@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.3 Componentes rectangulares de una fuerza</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header>
+    <h1>1.3 Componentes rectangulares de una fuerza</h1>
+  </header>
+
+  <div class="container">
+    <a href="index.html" class="btn btn-back">← Volver al menú principal</a>
+
+    <div class="card">
+      <h2>📌 Teoría</h2>
+      <p>Toda fuerza <strong>F</strong> en 2D puede descomponerse en dos componentes perpendiculares:</p>
+      <ul>
+        <li><strong>Componente x:</strong> <code>Fₓ = F·cosθ</code></li>
+        <li><strong>Componente y:</strong> <code>Fᵧ = F·senθ</code></li>
+      </ul>
+    </div>
+
+    <!-- ✅ Diagrama SVG: descomposición vectorial -->
+    <div class="diagram">
+      <h3>🔍 Representación vectorial</h3>
+      <svg width="300" height="200" viewBox="-10 -10 320 220">
+        <!-- Ejes -->
+        <line x1="0" y1="180" x2="300" y2="180" class="axis" />
+        <line x1="20" y1="0" x2="20" y2="200" class="axis" />
+        
+        <!-- Fuerza F -->
+        <line x1="20" y1="180" x2="200" y2="80" class="force-line" />
+        
+        <!-- Componentes -->
+        <line x1="20" y1="180" x2="200" y2="180" stroke="#27ae60" stroke-width="2" marker-end="url(#arrowhead)" />
+        <line x1="200" y1="180" x2="200" y2="80" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead)" />
+        
+        <!-- Etiquetas -->
+        <text x="110" y="100" class="vector-label" fill="#3498db">F</text>
+        <text x="110" y="195" class="vector-label" fill="#27ae60">Fₓ</text>
+        <text x="210" y="130" class="vector-label" fill="#e74c3c">Fᵧ</text>
+        <text x="25" y="170" class="vector-label" fill="#7f8c8d">θ</text>
+        
+        <!-- Flecha estándar -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+                  refX="10" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="arrow-head" />
+          </marker>
+        </defs>
+      </svg>
+    </div>
+
+    <!-- ✅ Botón para enunciado personalizado -->
+    <button id="btn-custom" class="btn btn-toggle">✏️ Usar mi propio enunciado</button>
+    
+    <div id="custom-form" style="display:none;" class="custom-problem">
+      <h3>Escribe tu enunciado aquí:</h3>
+      <textarea id="custom-statement" class="custom-input" placeholder="Ej: Una fuerza de 150 N actúa a 45° sobre la horizontal..."></textarea>
+      <button id="save-btn" class="btn">💾 Guardar y aplicar</button>
+      <div id="custom-saved" class="custom-saved"></div>
+    </div>
+
+    <!-- ✅ Problema estructurado -->
+    <div class="problem-structured">
+      <div class="problem-section enunciado">
+        <h3>📌 Enunciado</h3>
+        <p>Una fuerza de <strong>200 N</strong> forma un ángulo de <strong>30°</strong> con la horizontal. Determina sus componentes rectangulares <strong>Fₓ</strong> y <strong>Fᵧ</strong>.</p>
+      </div>
+
+      <div class="problem-section datos">
+        <h3>📊 Datos</h3>
+        <ul>
+          <li><code>F = 200 N</code></li>
+          <li><code>θ = 30°</code></li>
+          <li><code>cos30° = √3/2 ≈ 0.8660</code></li>
+          <li><code>sen30° = 0.5</code></li>
+        </ul>
+      </div>
+
+      <div class="problem-section formula">
+        <h3>🧮 Fórmulas</h3>
+        <ul>
+          <li><code>Fₓ = F·cosθ</code></li>
+          <li><code>Fᵧ = F·senθ</code></li>
+        </ul>
+      </div>
+
+      <div class="problem-section sustitucion">
+        <h3>✏️ Sustitución</h3>
+        <p><code>Fₓ = 200 N × cos30° = 200 × 0.8660 = 173.2 N</code></p>
+        <p><code>Fᵧ = 200 N × sen30° = 200 × 0.5 = 100 N</code></p>
+      </div>
+
+      <div class="problem-section resultado">
+        <h3>✅ Resultado</h3>
+        <p class="resultado-final"><strong>Fₓ = 173.2 N</strong>, <strong>Fᵧ = 100 N</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>🎓 Proyecto académico — Física General | Estática</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

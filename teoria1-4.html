@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.4 Condiciones de equilibrio</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header>
+    <h1>1.4 Condiciones de equilibrio<br><small>Primera Ley de Newton</small></h1>
+  </header>
+
+  <div class="container">
+    <a href="index.html" class="btn btn-back">← Volver al menú principal</a>
+
+    <div class="card">
+      <h2>📌 Teoría</h2>
+      <p>La <strong>Primera Ley de Newton</strong> (Ley de Inercia) establece que:</p>
+      <blockquote>
+        “Un cuerpo permanece en reposo o en movimiento rectilíneo uniforme si la <strong>fuerza neta</strong> que actúa sobre él es cero.”
+      </blockquote>
+      <p>Esto lleva a las <strong>condiciones de equilibrio estático</strong>:</p>
+      <ul>
+        <li><strong>∑Fₓ = 0</strong></li>
+        <li><strong>∑Fᵧ = 0</strong></li>
+      </ul>
+    </div>
+
+    <!-- ✅ Diagrama: cuerpo en equilibrio con dos cuerdas -->
+    <div class="diagram">
+      <h3>🔍 Diagrama: Cuerpo colgado por dos cuerdas</h3>
+      <svg width="280" height="220" viewBox="-20 -20 300 240">
+        <!-- Techo -->
+        <line x1="0" y1="40" x2="280" y2="40" stroke="#7f8c8d" stroke-width="3" />
+        
+        <!-- Cuerdas -->
+        <line x1="80" y1="40" x2="140" y2="140" stroke="#3498db" stroke-width="2" />
+        <line x1="200" y1="40" x2="140" y2="140" stroke="#e74c3c" stroke-width="2" />
+        
+        <!-- Ángulos -->
+        <text x="95" y="65" fill="#3498db">30°</text>
+        <text x="175" y="65" fill="#e74c3c">60°</text>
+        
+        <!-- Masa -->
+        <circle cx="140" cy="140" r="15" fill="#2c3e50" />
+        <text x="135" y="145" fill="white">m</text>
+        
+        <!-- Peso -->
+        <line x1="140" y1="140" x2="140" y2="180" stroke="#9b59b6" stroke-width="2" marker-end="url(#arrowhead)" />
+        <text x="150" y="165" fill="#9b59b6">W</text>
+        
+        <defs>
+          <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#9b59b6" />
+          </marker>
+        </defs>
+      </svg>
+    </div>
+
+    <!-- ✅ Botón para enunciado personalizado -->
+    <button id="btn-custom" class="btn btn-toggle">✏️ Usar mi propio enunciado</button>
+    
+    <div id="custom-form" style="display:none;" class="custom-problem">
+      <h3>Escribe tu enunciado aquí:</h3>
+      <textarea id="custom-statement" class="custom-input" placeholder="Ej: Un semáforo de 40 kg cuelga de dos cables que forman ángulos de 40° y 50°..."></textarea>
+      <button id="save-btn" class="btn">💾 Guardar y aplicar</button>
+      <div id="custom-saved" class="custom-saved"></div>
+    </div>
+
+    <!-- ✅ Problema estructurado -->
+    <div class="problem-structured">
+      <div class="problem-section enunciado">
+        <h3>📌 Enunciado</h3>
+        <p>Un cuerpo de 5 kg cuelga en reposo de dos cuerdas, como se muestra en la figura (ángulos: 30° y 60° con la horizontal). Calcula las tensiones <strong>T₁</strong> y <strong>T₂</strong> en las cuerdas. (g = 9.8 m/s²)</p>
+      </div>
+
+      <div class="problem-section datos">
+        <h3>📊 Datos</h3>
+        <ul>
+          <li>Masa: <code>m = 5 kg</code></li>
+          <li>Gravedad: <code>g = 9.8 m/s²</code></li>
+          <li>Peso: <code>W = mg = 49 N</code></li>
+          <li>Ángulo de T₁: <code>θ₁ = 30°</code></li>
+          <li>Ángulo de T₂: <code>θ₂ = 60°</code></li>
+        </ul>
+      </div>
+
+      <div class="problem-section formula">
+        <h3>🧮 Fórmulas</h3>
+        <ul>
+          <li><strong>∑Fₓ = 0</strong> → <code>T₂·cos60° − T₁·cos30° = 0</code></li>
+          <li><strong>∑Fᵧ = 0</strong> → <code>T₁·sen30° + T₂·sen60° − W = 0</code></li>
+        </ul>
+      </div>
+
+      <div class="problem-section sustitucion">
+        <h3>✏️ Sustitución</h3>
+        <p><strong>Ecuación X:</strong>  
+        <code>T₂·(0.5) − T₁·(√3/2) = 0</code>  
+        → <code>T₂ = T₁·√3</code></p>
+
+        <p><strong>Ecuación Y:</strong>  
+        <code>T₁·(0.5) + T₂·(√3/2) = 49</code></p>
+
+        <p>Sustituimos <code>T₂</code>:  
+        <code>0.5T₁ + (√3/2)(√3 T₁) = 49</code>  
+        <code>0.5T₁ + (3/2)T₁ = 49</code>  
+        <code>2T₁ = 49 → T₁ = 24.5 N</code></p>
+
+        <p><code>T₂ = 24.5 × √3 ≈ 42.44 N</code></p>
+      </div>
+
+      <div class="problem-section resultado">
+        <h3>✅ Resultado</h3>
+        <p class="resultado-final"><strong>T₁ = 24.5 N</strong>, &nbsp; <strong>T₂ ≈ 42.4 N</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>🎓 Proyecto académico — Física General | Estática</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
