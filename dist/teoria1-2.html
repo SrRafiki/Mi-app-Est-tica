@@ -83,7 +83,8 @@
     <div class="problem-structured">
       <div class="problem-section enunciado">
         <h3>📌 Enunciado</h3>
-        <p>Dos fuerzas actúan sobre un punto: <strong>F₁ = 60 N</strong> a 0° (eje +x) y <strong>F₂ = 80 N</strong> a 90° (eje +y). Calcula la magnitud y dirección de la resultante.</p>
+        <!-- ✅ CORREGIDO: <p> con id para que script.js lo encuentre -->
+        <p id="enunciado-texto">Dos fuerzas actúan sobre un punto: <strong>F₁ = 60 N</strong> a 0° (eje +x) y <strong>F₂ = 80 N</strong> a 90° (eje +y). Calcula la magnitud y dirección de la resultante.</p>
       </div>
 
       <div class="problem-section datos">
@@ -97,4 +98,33 @@
       <div class="problem-section formula">
         <h3>🧮 Fórmulas</h3>
         <ul>
-          <li><code>Rₓ = F₁ₓ + F₂
+          <li><code>Rₓ = F₁ₓ + F₂ₓ</code></li>
+          <li><code>Rᵧ = F₁ᵧ + F₂ᵧ</code></li>
+          <li><code>R = √(Rₓ² + Rᵧ²)</code></li>
+          <li><code>θ = tan⁻¹(Rᵧ / Rₓ)</code></li>
+        </ul>
+      </div>
+
+      <div class="problem-section sustitucion">
+        <h3>✏️ Sustitución</h3>
+        <p><code>Rₓ = 60 + 0 = 60 N</code></p>
+        <p><code>Rᵧ = 0 + 80 = 80 N</code></p>
+        <p><code>R = √(60² + 80²) = √(3600 + 6400) = √10000 = 100 N</code></p>
+        <p><code>θ = tan⁻¹(80 / 60) = tan⁻¹(1.333) ≈ 53.13°</code></p>
+      </div>
+
+      <div class="problem-section resultado">
+        <h3>✅ Resultado</h3>
+        <p>La fuerza resultante es:</p>
+        <p class="resultado-final"><strong>R = 100 N</strong> a <strong>53.13°</strong> sobre el eje +x</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>🎓 Proyecto académico — Física General | Estática</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
