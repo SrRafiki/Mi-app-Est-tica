@@ -23,52 +23,35 @@
       </ul>
     </div>
 
-    <!-- ✅ Diagrama SVG: descomposición vectorial -->
+    <!-- ✅ Diagrama SVG -->
     <div class="diagram">
       <h3>🔍 Representación vectorial</h3>
       <svg width="300" height="200" viewBox="-10 -10 320 220">
-        <!-- Ejes -->
         <line x1="0" y1="180" x2="300" y2="180" class="axis" />
         <line x1="20" y1="0" x2="20" y2="200" class="axis" />
-        
-        <!-- Fuerza F -->
         <line x1="20" y1="180" x2="200" y2="80" class="force-line" />
-        
-        <!-- Componentes -->
-        <line x1="20" y1="180" x2="200" y2="180" stroke="#27ae60" stroke-width="2" marker-end="url(#arrowhead)" />
-        <line x1="200" y1="180" x2="200" y2="80" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead)" />
-        
-        <!-- Etiquetas -->
-        <text x="110" y="100" class="vector-label" fill="#3498db">F</text>
-        <text x="110" y="195" class="vector-label" fill="#27ae60">Fₓ</text>
-        <text x="210" y="130" class="vector-label" fill="#e74c3c">Fᵧ</text>
-        <text x="25" y="170" class="vector-label" fill="#7f8c8d">θ</text>
-        
-        <!-- Flecha estándar -->
-        <defs>
-          <marker id="arrowhead" markerWidth="10" markerHeight="7" 
-                  refX="10" refY="3.5" orient="auto">
-            <polygon points="0 0, 10 3.5, 0 7" class="arrow-head" />
-          </marker>
-        </defs>
+        <line x1="20" y1="180" x2="200" y2="180" stroke="#27ae60" />
+        <line x1="200" y1="180" x2="200" y2="80" stroke="#e74c3c" />
+        <text x="110" y="100" fill="#3498db">F</text>
+        <text x="110" y="195" fill="#27ae60">Fₓ</text>
+        <text x="210" y="130" fill="#e74c3c">Fᵧ</text>
+        <text x="25" y="170" fill="#7f8c8d">θ</text>
       </svg>
     </div>
 
-    <!-- ✅ Botón para enunciado personalizado -->
-    <button id="btn-custom" class="btn btn-toggle">✏️ Usar mi propio enunciado</button>
-    
+    <!-- ✅ Botón y formulario de TEXTO LIBRE (solo para 1.3) -->
+    <button id="btn-custom" class="btn btn-toggle">✏️ Resolver TU problema</button>
     <div id="custom-form" style="display:none;" class="custom-problem">
-      <h3>Escribe tu enunciado aquí:</h3>
-      <textarea id="custom-statement" class="custom-input" placeholder="Ej: Una fuerza de 150 N actúa a 45° sobre la horizontal..."></textarea>
-      <button id="save-btn" class="btn">💾 Guardar y aplicar</button>
+      <h3>Escribe tu enunciado:</h3>
+      <textarea id="custom-statement" class="custom-input" placeholder="Ej: Una fuerza de 200 N forma un ángulo de 30° con la horizontal." rows="3"></textarea>
+      <button id="save-btn" class="btn">🚀 Calcular y aplicar</button>
       <div id="custom-saved" class="custom-saved"></div>
     </div>
 
-    <!-- ✅ Problema estructurado -->
     <div class="problem-structured">
       <div class="problem-section enunciado">
         <h3>📌 Enunciado</h3>
-        <p>Una fuerza de <strong>200 N</strong> forma un ángulo de <strong>30°</strong> con la horizontal. Determina sus componentes rectangulares <strong>Fₓ</strong> y <strong>Fᵧ</strong>.</p>
+        <p id="enunciado-texto">Una fuerza de <strong>200 N</strong> forma un ángulo de <strong>30°</strong> con la horizontal.</p>
       </div>
 
       <div class="problem-section datos">
@@ -76,7 +59,7 @@
         <ul>
           <li><code>F = 200 N</code></li>
           <li><code>θ = 30°</code></li>
-          <li><code>cos30° = √3/2 ≈ 0.8660</code></li>
+          <li><code>cos30° ≈ 0.8660</code></li>
           <li><code>sen30° = 0.5</code></li>
         </ul>
       </div>

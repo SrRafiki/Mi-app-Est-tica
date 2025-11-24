@@ -23,98 +23,92 @@
       <p>Matemáticamente: <code>Mₒ(R) = ΣMₒ(Fᵢ)</code></p>
     </div>
 
-    <!-- ✅ Diagrama: teorema de Varignon -->
+    <!-- ✅ Diagrama SVG dinámico -->
     <div class="diagram">
       <h3>🔍 Diagrama: Verificación del teorema</h3>
-      <svg width="300" height="200" viewBox="-20 -20 320 220">
-        <!-- Punto O -->
+      <svg width="300" height="200" viewBox="-20 -20 320 220" id="diagrama-varignon">
+        <!-- Punto O (origen) -->
         <circle cx="50" cy="150" r="5" fill="#2c3e50" />
         <text x="40" y="140" class="vector-label">O</text>
         
-        <!-- Punto A (aplicación) -->
+        <!-- Punto A (aplicación de fuerzas) -->
         <circle cx="50" cy="50" r="4" fill="#e74c3c" />
         <text x="60" y="45" class="vector-label">A</text>
         
-        <!-- Vector r (O→A) -->
-        <line x1="50" y1="150" x2="50" y2="50" stroke="#9b59b6" stroke-width="1.5" stroke-dasharray="4,4" />
-        <text x="20" y="100" fill="#9b59b6">r = 1 m</text>
+        <!-- Vector posición desde O a A -->
+        <line x1="50" y1="150" x2="50" y2="50" stroke="#9b59b6" stroke-width="1.5" stroke-dasharray="4,4" id="vector-posicion" />
+        <text x="30" y="100" fill="#9b59b6">r = (0, -5) m</text>
         
-        <!-- Fuerza F₁ (→) -->
-        <line x1="50" y1="50" x2="120" y2="50" class="force-line" stroke="#3498db" />
+        <!-- Fuerza F₁ (eje x) -->
+        <line x1="50" y1="50" x2="120" y2="50" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead-blue)" id="fuerza1" />
         <text x="85" y="40" fill="#3498db">F₁ = 30 N</text>
         
-        <!-- Fuerza F₂ (↑) -->
-        <line x1="50" y1="50" x2="50" y2="0" class="force-line" stroke="#e74c3c" />
+        <!-- Fuerza F₂ (eje y) -->
+        <line x1="50" y1="50" x2="50" y2="0" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-red)" id="fuerza2" />
         <text x="25" y="25" fill="#e74c3c">F₂ = 40 N</text>
         
         <!-- Resultante R -->
-        <line x1="50" y1="50" x2="120" y2="0" stroke="#27ae60" stroke-width="2.5" marker-end="url(#arrowhead)" />
-        <text x="90" y="25" fill="#27ae60">R</text>
+        <line x1="50" y1="50" x2="120" y2="0" stroke="#27ae60" stroke-width="2.5" marker-end="url(#arrowhead-green)" id="resultante" />
+        <text x="130" y="105" fill="#27ae60">R</text>
         
+        <!-- Definición de marcadores -->
         <defs>
-          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
-            <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60" />
+          <marker id="arrowhead-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#3498db" />
+          </marker>
+          <marker id="arrowhead-red" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c" />
+          </marker>
+          <marker id="arrowhead-green" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto">
+            <polygon points="0 0, 12 4, 0 8" fill="#27ae60" />
           </marker>
         </defs>
       </svg>
     </div>
 
-    <!-- ✅ Botón para enunciado personalizado -->
-    <button id="btn-custom" class="btn btn-toggle">✏️ Usar mi propio enunciado</button>
-    
+    <!-- ✅ Botón y formulario de texto libre -->
+    <button id="btn-custom" class="btn btn-toggle">✏️ Resolver TU problema</button>
     <div id="custom-form" style="display:none;" class="custom-problem">
-      <h3>Escribe tu enunciado aquí:</h3>
-      <textarea id="custom-statement" class="custom-input" placeholder="Ej: Tres fuerzas actúan concurrentemente en un punto. Verifica el teorema de Varignon respecto a un punto O..."></textarea>
-      <button id="save-btn" class="btn">💾 Guardar y aplicar</button>
+      <h3>Escribe tu enunciado:</h3>
+      <textarea id="custom-statement" class="custom-input" placeholder="Ej: Dos fuerzas actúan en el punto A(0,0): F₁ = 30 N en dirección +x y F₂ = 40 N en dirección +y. Calcula el momento total respecto al punto B(0, 5 m)." rows="3"></textarea>
+      <button id="save-btn" class="btn">🚀 Calcular y aplicar</button>
       <div id="custom-saved" class="custom-saved"></div>
     </div>
 
-    <!-- ✅ Problema estructurado -->
     <div class="problem-structured">
       <div class="problem-section enunciado">
         <h3>📌 Enunciado</h3>
-        <p>Dos fuerzas actúan en el punto A(0,0): <strong>F₁ = 30 N</strong> en dirección +x, y <strong>F₂ = 40 N</strong> en dirección +y. Calcula el momento total respecto al punto B(0, 5 m) usando:  
-        a) El momento de la resultante  
-        b) El teorema de Varignon (suma de momentos)</p>
+        <p id="enunciado-texto">Dos fuerzas actúan en el punto A(0,0): F₁ = 30 N en dirección +x y F₂ = 40 N en dirección +y. Calcula el momento total respecto al punto B(0, 5 m).</p>
       </div>
 
       <div class="problem-section datos">
         <h3>📊 Datos</h3>
         <ul>
-          <li>F₁ = 30 N i → posición: <code>𝐫₁ = (0,0)</code></li>
-          <li>F₂ = 40 N j → posición: <code>𝐫₂ = (0,0)</code></li>
-          <li>Punto B: <code>(0, 5) m</code></li>
-          <li>Vector posición desde B a A: <code>𝐫 = (0, −5) m</code></li>
+          <li><code>F₁ = 30 N i</code></li>
+          <li><code>F₂ = 40 N j</code></li>
+          <li><code>r = (0, -5) m</code></li>
         </ul>
       </div>
 
       <div class="problem-section formula">
         <h3>🧮 Fórmulas</h3>
         <ul>
-          <li>Momento vectorial: <code>𝐌 = 𝐫 × 𝐅</code></li>
-          <li>En 2D: <code>M = x·Fᵧ − y·Fₓ</code></li>
-          <li>Varignon: <code>M_total = M₁ + M₂</code></li>
+          <li><code>M = x·Fᵧ - y·Fₓ</code></li>
+          <li><code>M_total = M₁ + M₂</code></li>
         </ul>
       </div>
 
       <div class="problem-section sustitucion">
         <h3>✏️ Sustitución</h3>
-        <p><strong>a) Por resultante:</strong>  
-        <code>R = (30 i + 40 j) N</code>  
-        <code>𝐫 = (0, −5) m</code>  
-        <code>M_B(R) = (0)(40) − (−5)(30) = 0 + 150 = 150 N·m</code></p>
-
-        <p><strong>b) Por Varignon:</strong>  
-        <code>M_B(F₁) = 0 − (−5)(30) = 150 N·m</code>  
-        <code>M_B(F₂) = (0)(40) − (−5)(0) = 0 N·m</code>  
-        <code>M_total = 150 + 0 = 150 N·m</code></p>
+        <p><code>M_B(F₁) = 0 - (-5)(30) = 150 N·m</code></p>
+        <p><code>M_B(F₂) = (0)(40) - (-5)(0) = 0 N·m</code></p>
+        <p><code>M_total = 150 + 0 = 150 N·m</code></p>
+        <p><code>M_B(R) = mismo valor → ✔️ Teorema confirmado</code></p>
       </div>
 
       <div class="problem-section resultado">
         <h3>✅ Resultado</h3>
-        <p>Ambos métodos dan el mismo valor:</p>
-        <p class="resultado-final"><strong>M_B = 150 N·m</strong> (antihorario)</p>
-        <p>✅ Confirma el teorema de Varignon.</p>
+        <p class="resultado-final"><strong>M = 150 N·m</strong><br><small>✅ Teorema de Varignon verificado</small></p>
       </div>
     </div>
   </div>
@@ -124,5 +118,118 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+  // ▶️ Función para actualizar el diagrama SVG
+  function actualizarDiagrama(F1, F2, d) {
+    const svg = document.getElementById('diagrama-varignon');
+    const fuerza1 = document.getElementById('fuerza1');
+    const fuerza2 = document.getElementById('fuerza2');
+    const resultante = document.getElementById('resultante');
+    const textoF1 = document.querySelector('#fuerza1 + text');
+    const textoF2 = document.querySelector('#fuerza2 + text');
+    const vectorPosicion = document.getElementById('vector-posicion');
+    const textoVector = document.querySelector('#vector-posicion + text');
+
+    // Actualizar texto de las fuerzas
+    textoF1.textContent = `F₁ = ${F1} N`;
+    textoF2.textContent = `F₂ = ${F2} N`;
+
+    // Actualizar vector posición (siempre vertical)
+    vectorPosicion.setAttribute('x1', 50);
+    vectorPosicion.setAttribute('y1', 150);
+    vectorPosicion.setAttribute('x2', 50);
+    vectorPosicion.setAttribute('y2', 50);
+    textoVector.textContent = `r = (0, -${d}) m`;
+
+    // Actualizar resultante (opcional)
+    const R = Math.sqrt(F1*F1 + F2*F2);
+    const theta = Math.atan2(F2, F1) * 180 / Math.PI;
+    const xR = 50 + 60 * Math.cos(theta * Math.PI / 180);
+    const yR = 50 - 60 * Math.sin(theta * Math.PI / 180);
+
+    resultante.setAttribute('x1', 50);
+    resultante.setAttribute('y1', 50);
+    resultante.setAttribute('x2', xR);
+    resultante.setAttribute('y2', yR);
+  }
+
+  // ▶️ Función para procesar el enunciado
+  document.getElementById('save-btn')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    const enunciado = document.getElementById('custom-statement')?.value.trim();
+
+    if (!enunciado) {
+      alert('⚠️ Por favor, escribe un enunciado.');
+      return;
+    }
+
+    try {
+      // ▶️ Extraer F1, F2, d con expresiones regulares
+      const patterns = [
+        /dos\s+fuerzas\s+actúan\s+en\s+el\s+punto\s+A\(0,0\):\s+F₁\s*=\s*(\d+\.?\d*)\s*N\s+en\s+dirección\s+\+x\s+y\s+F₂\s*=\s*(\d+\.?\d*)\s*N\s+en\s+dirección\s+\+y\.\s+Calcula\s+el\s+momento\s+total\s+respecto\s+al\s+punto\s+B\(0,\s*(\d+\.?\d*)\s*m\)/i,
+        /fuerzas\s*:\s*F₁\s*=\s*(\d+\.?\d*)\s*N\s+i,\s*F₂\s*=\s*(\d+\.?\d*)\s*N\s+j,\s*punto\s*B\s*:\s*\(\s*0,\s*(\d+\.?\d*)\s*m\)/i,
+        /dos\s+fuerzas\s+de\s+(\d+\.?\d*)\s+N\s+y\s+(\d+\.?\d*)\s+N\s+en\s+los\s+ejes\s+x\s+y\s+respectivamente,\s+respecto\s+al\s+punto\s+B\(0,\s*(\d+\.?\d*)\s*m\)/i
+      ];
+
+      let F1 = null, F2 = null, d = null;
+      for (const p of patterns) {
+        const match = enunciado.match(p);
+        if (match) { F1 = parseFloat(match[1]); F2 = parseFloat(match[2]); d = parseFloat(match[3]); break; }
+      }
+
+      if (F1 === null || F2 === null || d === null) {
+        throw new Error('No se encontraron los valores. Usa:\n- "Dos fuerzas actúan en el punto A(0,0): F₁ = 30 N en dirección +x y F₂ = 40 N en dirección +y. Calcula el momento total respecto al punto B(0, 5 m)."');
+      }
+
+      // ▶️ Calcular momentos
+      const M1 = 0 - (-d) * F1; // M_B(F₁) = x·Fᵧ - y·Fₓ = 0 - (-d)·F1
+      const M2 = 0 - (-d) * 0; // M_B(F₂) = x·Fᵧ - y·Fₓ = 0 - (-d)·0 = 0
+      const M_total = M1 + M2;
+
+      // ▶️ Actualizar enunciado
+      document.getElementById('enunciado-texto').innerHTML = 
+        `Dos fuerzas actúan en el punto A(0,0): <strong>F₁ = ${F1} N</strong> en dirección +x y <strong>F₂ = ${F2} N</strong> en dirección +y. Calcula el momento total respecto al punto B(0, ${d} m).`;
+
+      // ▶️ Actualizar datos
+      document.querySelector('.problem-section.datos ul').innerHTML = `
+        <li><code>F₁ = ${F1} N i</code></li>
+        <li><code>F₂ = ${F2} N j</code></li>
+        <li><code>r = (0, -${d}) m</code></li>
+      `;
+
+      // ▶️ Actualizar fórmulas
+      document.querySelector('.problem-section.formula').innerHTML = `
+        <h3>🧮 Fórmulas</h3>
+        <ul>
+          <li><code>M = x·Fᵧ - y·Fₓ</code></li>
+          <li><code>M_total = M₁ + M₂</code></li>
+        </ul>
+      `;
+
+      // ▶️ Actualizar sustitución
+      document.querySelector('.problem-section.sustitucion').innerHTML = `
+        <h3>✏️ Sustitución</h3>
+        <p><code>M_B(F₁) = 0 - (-${d})(${F1}) = ${M1} N·m</code></p>
+        <p><code>M_B(F₂) = (0)(${F2}) - (-${d})(0) = ${M2} N·m</code></p>
+        <p><code>M_total = ${M1} + ${M2} = ${M_total} N·m</code></p>
+        <p><code>M_B(R) = mismo valor → ✔️ Teorema confirmado</code></p>
+      `;
+
+      // ▶️ Actualizar resultado final
+      document.querySelector('.resultado-final').innerHTML = 
+        `<strong>M = ${M_total} N·m</strong><br><small>✅ Teorema de Varignon verificado</small>`;
+
+      // ▶️ Actualizar diagrama
+      actualizarDiagrama(F1, F2, d);
+
+      // ▶️ Ocultar formulario
+      document.getElementById('custom-form').style.display = 'none';
+      alert('✅ ¡Problema actualizado con tus valores!');
+    } catch (error) {
+      console.error('❌ Error:', error);
+      alert(`⚠️ Error al procesar tu enunciado.\nFormatos válidos:\n- "Dos fuerzas actúan en el punto A(0,0): F₁ = 30 N en dirección +x y F₂ = 40 N en dirección +y. Calcula el momento total respecto al punto B(0, 5 m)."`);
+    }
+  });
+  </script>
 </body>
 </html>

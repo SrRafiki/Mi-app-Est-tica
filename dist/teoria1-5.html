@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>1.5 Cuerpos rígidos y transmisibilidad</title>
+  <title>1.5 Cuerpos rígidos</title>
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
@@ -23,95 +23,81 @@
       </blockquote>
     </div>
 
-    <!-- ✅ Diagrama: fuerza con misma línea de acción -->
+    <!-- ✅ Diagrama SVG dinámico -->
     <div class="diagram">
-      <h3>🔍 Diagrama: Fuerzas equivalentes por transmisibilidad</h3>
-      <svg width="350" height="160" viewBox="-20 -20 370 180">
-        <!-- Bloque -->
-        <rect x="80" y="60" width="180" height="60" fill="#3498db" rx="6" />
+      <h3>🔍 Diagrama: Fuerzas equivalentes (transmisibilidad)</h3>
+      <svg width="350" height="200" viewBox="-50 -50 400 250" id="diagrama-transmisibilidad">
+        <!-- Bloque (cuerpo rígido) -->
+        <rect x="100" y="50" width="150" height="30" fill="#3498db" rx="4" />
         
         <!-- Línea de acción (punteada) -->
-        <line x1="50" y1="90" x2="320" y2="90" stroke="#9b59b6" stroke-dasharray="5,5" stroke-width="1.5" />
-        <text x="300" y="80" fill="#9b59b6" font-size="12">Línea de acción</text>
+        <line x1="50" y1="65" x2="300" y2="65" stroke="#9b59b6" stroke-dasharray="4,4" id="linea-accion" />
+        <text x="280" y="60" fill="#9b59b6" font-size="12">Línea de acción</text>
         
         <!-- Fuerza 1 (izquierda) -->
-        <line x1="80" y1="90" x2="40" y2="90" class="force-line" />
-        <text x="50" y="78" fill="#3498db">F = 100 N</text>
+        <line x1="100" y1="65" x2="70" y2="65" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead-blue)" id="fuerza1" />
+        <text x="80" y="55" fill="#3498db" id="texto-f1">F = 100 N</text>
         
         <!-- Fuerza 2 (centro) -->
-        <line x1="170" y1="90" x2="130" y2="90" class="force-line" stroke="#e74c3c" />
-        <text x="140" y="78" fill="#e74c3c">F = 100 N</text>
+        <line x1="175" y1="65" x2="145" y2="65" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-red)" id="fuerza2" />
+        <text x="155" y="55" fill="#e74c3c" id="texto-f2">F = 100 N</text>
         
         <!-- Fuerza 3 (derecha) -->
-        <line x1="260" y1="90" x2="220" y2="90" class="force-line" stroke="#27ae60" />
-        <text x="230" y="78" fill="#27ae60">F = 100 N</text>
+        <line x1="250" y1="65" x2="220" y2="65" stroke="#27ae60" stroke-width="2" marker-end="url(#arrowhead-green)" id="fuerza3" />
+        <text x="230" y="55" fill="#27ae60" id="texto-f3">F = 100 N</text>
         
-        <!-- Flechas indicadoras (arriba) -->
-        <line x1="80" y1="50" x2="80" y2="60" stroke="#3498db" stroke-width="1.5" marker-end="url(#dot)" />
-        <line x1="170" y1="50" x2="170" y2="60" stroke="#e74c3c" stroke-width="1.5" marker-end="url(#dot)" />
-        <line x1="260" y1="50" x2="260" y2="60" stroke="#27ae60" stroke-width="1.5" marker-end="url(#dot)" />
-        <text x="155" y="40" fill="#2c3e50">Puntos de aplicación</text>
-        
+        <!-- Definición de flechas -->
         <defs>
-          <marker id="dot" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
-            <circle cx="3" cy="3" r="2" fill="#2c3e50" />
+          <marker id="arrowhead-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#3498db" />
+          </marker>
+          <marker id="arrowhead-red" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c" />
+          </marker>
+          <marker id="arrowhead-green" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60" />
           </marker>
         </defs>
       </svg>
     </div>
 
-    <!-- ✅ Botón para enunciado personalizado -->
-    <button id="btn-custom" class="btn btn-toggle">✏️ Usar mi propio enunciado</button>
-    
+    <!-- ✅ Botón y formulario de texto libre -->
+    <button id="btn-custom" class="btn btn-toggle">✏️ Resolver TU problema</button>
     <div id="custom-form" style="display:none;" class="custom-problem">
-      <h3>Escribe tu enunciado aquí:</h3>
-      <textarea id="custom-statement" class="custom-input" placeholder="Ej: Una fuerza de 200 N se aplica a un bloque en tres posiciones distintas pero colineales..."></textarea>
-      <button id="save-btn" class="btn">💾 Guardar y aplicar</button>
+      <h3>Escribe tu enunciado:</h3>
+      <textarea id="custom-statement" class="custom-input" placeholder="Ej: Una fuerza horizontal de 120 N se aplica en tres puntos colineales." rows="3"></textarea>
+      <button id="save-btn" class="btn">🚀 Calcular y aplicar</button>
       <div id="custom-saved" class="custom-saved"></div>
     </div>
 
-    <!-- ✅ Problema estructurado -->
     <div class="problem-structured">
       <div class="problem-section enunciado">
         <h3>📌 Enunciado</h3>
-        <p>Una fuerza horizontal de 100 N se aplica a un bloque rígido en tres puntos diferentes, todos sobre la misma línea de acción (a 0.5 m, 1.0 m y 1.5 m de altura). ¿Cambia el movimiento del bloque en cada caso? Explica usando el principio de transmisibilidad.</p>
+        <p id="enunciado-texto">Una fuerza horizontal de 100 N se aplica en tres puntos colineales.</p>
       </div>
 
       <div class="problem-section datos">
         <h3>📊 Datos</h3>
         <ul>
-          <li><code>F = 100 N</code> (horizontal)</li>
-          <li>3 puntos de aplicación: todos en línea recta paralela al suelo</li>
-          <li>Cuerpo: bloque rígido sobre superficie horizontal sin fricción</li>
+          <li><code>F = 100 N</code></li>
+          <li>Línea de acción: misma</li>
         </ul>
       </div>
 
       <div class="problem-section formula">
         <h3>🧮 Principio clave</h3>
         <p><strong>Principio de transmisibilidad:</strong>  
-        Si dos fuerzas tienen igual magnitud, dirección y línea de acción, producen el mismo efecto **externo** en un cuerpo rígido.</p>
+        Si dos fuerzas tienen igual magnitud, dirección y línea de acción, producen el mismo efecto externo.</p>
       </div>
 
       <div class="problem-section sustitucion">
         <h3>✏️ Análisis</h3>
-        <p>En los tres casos:</p>
-        <ul>
-          <li>Magnitud: 100 N ✔️</li>
-          <li>Dirección: horizontal ✔️</li>
-          <li>Línea de acción: misma recta horizontal ✔️</li>
-        </ul>
-        <p>→ Las tres fuerzas son equivalentes externamente.</p>
-        <p>Por lo tanto, la aceleración del CM y la ausencia de rotación son idénticas en los tres casos.</p>
+        <p>En los tres casos: magnitud = 100 N, dirección = horizontal, línea de acción = misma recta → equivalente externamente.</p>
       </div>
 
       <div class="problem-section resultado">
         <h3>✅ Resultado</h3>
-        <p>No, <strong>el movimiento no cambia</strong>. En los tres casos:</p>
-        <ul>
-          <li>∑Fₓ = 100 N → <code>a = F/m</code> (misma aceleración del CM)</li>
-          <li>∑M = 0 → no hay rotación</li>
-        </ul>
-        <p class="resultado-final">→ El principio de transmisibilidad se cumple.</p>
+        <p class="resultado-final">→ El movimiento NO cambia (principio de transmisibilidad)</p>
       </div>
     </div>
   </div>
@@ -121,5 +107,79 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+  // ▶️ Función para actualizar el diagrama SVG
+  function actualizarDiagrama(F) {
+    const svg = document.getElementById('diagrama-transmisibilidad');
+    const textoF1 = document.getElementById('texto-f1');
+    const textoF2 = document.getElementById('texto-f2');
+    const textoF3 = document.getElementById('texto-f3');
+
+    // Actualizar texto de las fuerzas
+    textoF1.textContent = `F = ${F} N`;
+    textoF2.textContent = `F = ${F} N`;
+    textoF3.textContent = `F = ${F} N`;
+  }
+
+  // ▶️ Función para procesar el enunciado
+  document.getElementById('save-btn')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    const enunciado = document.getElementById('custom-statement')?.value.trim();
+
+    if (!enunciado) {
+      alert('⚠️ Por favor, escribe un enunciado.');
+      return;
+    }
+
+    try {
+      // ▶️ Extraer F con expresiones regulares
+      const patterns = [
+        /una\s+fuerza\s+horizontal\s+de\s+(\d+\.?\d*)\s+N\s+se\s+aplica\s+en\s+tres\s+puntos\s+colineales/i,
+        /fuerza\s*:\s*(\d+\.?\d*)\s*N\s*,\s*horizontal,\s*puntos\s+colineales/i,
+        /un\s+fuerza\s+de\s+(\d+\.?\d*)\s+N\s+horizontal\s+en\s+tres\s+puntos\s+colineales/i
+      ];
+
+      let F = null;
+      for (const p of patterns) {
+        const match = enunciado.match(p);
+        if (match) { F = parseFloat(match[1]); break; }
+      }
+
+      if (F === null) {
+        throw new Error('No se encontró la fuerza. Usa: "Una fuerza horizontal de 100 N se aplica en tres puntos colineales."');
+      }
+
+      // ▶️ Actualizar enunciado
+      document.getElementById('enunciado-texto').innerHTML = 
+        `Una fuerza horizontal de <strong>${F} N</strong> se aplica en tres puntos colineales.`;
+
+      // ▶️ Actualizar datos
+      document.querySelector('.problem-section.datos ul').innerHTML = `
+        <li><code>F = ${F} N</code></li>
+        <li>Línea de acción: misma</li>
+      `;
+
+      // ▶️ Actualizar análisis
+      document.querySelector('.problem-section.sustitucion').innerHTML = `
+        <h3>✏️ Análisis</h3>
+        <p>En los tres casos: magnitud = ${F} N, dirección = horizontal, línea de acción = misma recta → equivalente externamente.</p>
+      `;
+
+      // ▶️ Actualizar resultado final
+      document.querySelector('.resultado-final').innerHTML = 
+        `→ El movimiento NO cambia (principio de transmisibilidad)`;
+
+      // ▶️ Actualizar diagrama
+      actualizarDiagrama(F);
+
+      // ▶️ Ocultar formulario
+      document.getElementById('custom-form').style.display = 'none';
+      alert('✅ ¡Problema actualizado con tus valores!');
+    } catch (error) {
+      console.error('❌ Error:', error);
+      alert(`⚠️ Error al procesar tu enunciado.\nEjemplo válido:\n"Una fuerza horizontal de 100 N se aplica en tres puntos colineales."`);
+    }
+  });
+  </script>
 </body>
 </html>

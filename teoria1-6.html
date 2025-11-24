@@ -18,15 +18,15 @@
       <h2>📌 Teoría</h2>
       <p>El <strong>momento</strong> (o torque) de una fuerza <strong>F</strong> respecto a un punto <em>O</em> mide su tendencia a causar rotación.</p>
       <p><strong>Fórmula escalar (2D):</strong>  
-        <code>Mₒ = ± F · d</code>  
+        <code>Mₒ = ± F · d · senθ</code>  
         donde <code>d</code> = brazo de palanca (distancia perpendicular de <em>O</em> a la línea de acción de <strong>F</strong>).  
         Signo: (+) → giro antihorario, (–) → horario.</p>
     </div>
 
-    <!-- ✅ Diagrama SVG: momento con llave -->
+    <!-- ✅ Diagrama SVG dinámico -->
     <div class="diagram">
       <h3>🔍 Diagrama: Fuerza aplicada a una llave</h3>
-      <svg width="400" height="180" viewBox="-20 -20 420 200">
+      <svg width="400" height="180" viewBox="-20 -20 420 200" id="diagrama-momento">
         <!-- Punto O (tornillo) -->
         <circle cx="50" cy="100" r="8" fill="#2c3e50" />
         <text x="42" y="88" class="vector-label">O</text>
@@ -34,48 +34,50 @@
         <!-- Llave (brazo) -->
         <rect x="50" y="96" width="250" height="8" fill="#95a5a6" rx="4" />
         
-        <!-- Fuerza perpendicular -->
-        <line x1="300" y1="100" x2="300" y2="40" class="force-line" />
+        <!-- Fuerza F (perpendicular) -->
+        <line x1="300" y1="100" x2="300" y2="40" class="force-line" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead-blue)" id="fuerza" />
+        <text x="310" y="70" fill="#3498db" id="texto-f">F = 50 N</text>
         
         <!-- Brazo d (línea doble con flechas) -->
-        <line x1="50" y1="115" x2="300" y2="115" stroke="#9b59b6" stroke-width="1.5" />
+        <line x1="50" y1="115" x2="300" y2="115" stroke="#9b59b6" stroke-width="1.5" id="brazo-d" />
         <polygon points="50,112 45,115 50,118" fill="#9b59b6" />
         <polygon points="300,112 305,115 300,118" fill="#9b59b6" />
-        <text x="160" y="135" class="vector-label" fill="#9b59b6">d = 0.3 m</text>
-        
-        <!-- Etiqueta de fuerza -->
-        <text x="310" y="70" class="vector-label" fill="#3498db">F = 50 N</text>
-        <text x="290" y="30" class="vector-label" fill="#27ae60">↑</text>
+        <text x="160" y="135" class="vector-label" fill="#9b59b6" id="texto-d">d = 0.3 m</text>
         
         <!-- Arco de giro (opcional) -->
-        <path d="M60,90 A40,40 0 0 1 90,60" fill="none" stroke="#27ae60" stroke-width="2" stroke-dasharray="5,3" />
-        <text x="95" y="55" class="vector-label" fill="#27ae60">↺</text>
+        <path d="M60,90 A40,40 0 0 1 90,60" fill="none" stroke="#27ae60" stroke-width="2" stroke-dasharray="5,3" id="arco-giro" />
+        <text x="95" y="55" class="vector-label" fill="#27ae60" id="texto-arco">↺</text>
+        
+        <!-- Definición de marcadores -->
+        <defs>
+          <marker id="arrowhead-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#3498db" />
+          </marker>
+        </defs>
       </svg>
     </div>
 
-    <!-- ✅ Botón para enunciado personalizado -->
-    <button id="btn-custom" class="btn btn-toggle">✏️ Usar mi propio enunciado</button>
-    
+    <!-- ✅ Botón y formulario de texto libre -->
+    <button id="btn-custom" class="btn btn-toggle">✏️ Resolver TU problema</button>
     <div id="custom-form" style="display:none;" class="custom-problem">
-      <h3>Escribe tu enunciado aquí:</h3>
-      <textarea id="custom-statement" class="custom-input" placeholder="Ej: Una fuerza de 75 N se aplica a 0.4 m del pivote con un ángulo de 60°..."></textarea>
-      <button id="save-btn" class="btn">💾 Guardar y aplicar</button>
+      <h3>Escribe tu enunciado:</h3>
+      <textarea id="custom-statement" class="custom-input" placeholder="Ej: F = 50 N, d = 0.3 m, θ = 90°" rows="3"></textarea>
+      <button id="save-btn" class="btn">🚀 Calcular y aplicar</button>
       <div id="custom-saved" class="custom-saved"></div>
     </div>
 
-    <!-- ✅ Problema estructurado -->
     <div class="problem-structured">
       <div class="problem-section enunciado">
         <h3>📌 Enunciado</h3>
-        <p>Una fuerza de 50 N se aplica perpendicularmente al extremo de una llave de 0.3 m de longitud. Calcula el momento que produce respecto al centro del tornillo.</p>
+        <p id="enunciado-texto">Una fuerza de 50 N se aplica perpendicularmente al extremo de una llave de 0.3 m.</p>
       </div>
 
       <div class="problem-section datos">
         <h3>📊 Datos</h3>
         <ul>
-          <li>Fuerza: <code>F = 50 N</code></li>
-          <li>Distancia al punto O: <code>d = 0.3 m</code></li>
-          <li>Ángulo entre <strong>F</strong> y <strong>r</strong>: <code>θ = 90°</code></li>
+          <li><code>F = 50 N</code></li>
+          <li><code>d = 0.3 m</code></li>
+          <li><code>θ = 90°</code></li>
           <li><code>sen90° = 1</code></li>
         </ul>
       </div>
@@ -83,7 +85,6 @@
       <div class="problem-section formula">
         <h3>🧮 Fórmula</h3>
         <p><code>Mₒ = F · d · senθ</code></p>
-        <p>Como <code>sen90° = 1</code> → <code>Mₒ = F · d</code></p>
       </div>
 
       <div class="problem-section sustitucion">
@@ -94,8 +95,7 @@
 
       <div class="problem-section resultado">
         <h3>✅ Resultado</h3>
-        <p>El momento respecto al tornillo es de:</p>
-        <p class="resultado-final">15 N·m (sentido antihorario)</p>
+        <p class="resultado-final"><strong>M = 15 N·m</strong> (sentido antihorario)</p>
       </div>
     </div>
   </div>
@@ -105,5 +105,121 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+  // ▶️ Función para actualizar el diagrama SVG
+  function actualizarDiagrama(F, d, θ) {
+    const svg = document.getElementById('diagrama-momento');
+    const fuerza = document.getElementById('fuerza');
+    const textoF = document.getElementById('texto-f');
+    const brazoD = document.getElementById('brazo-d');
+    const textoD = document.getElementById('texto-d');
+    const arcoGiro = document.getElementById('arco-giro');
+    const textoArco = document.getElementById('texto-arco');
+
+    // Calcular coordenadas de la fuerza (siempre perpendicular)
+    const xF = 300;
+    const yF = 100 - 60 * Math.sin(θ * Math.PI / 180); // Ajusta la altura según el ángulo
+
+    // Actualizar línea de la fuerza
+    fuerza.setAttribute('x1', xF);
+    fuerza.setAttribute('y1', 100);
+    fuerza.setAttribute('x2', xF);
+    fuerza.setAttribute('y2', yF);
+
+    // Actualizar texto de la fuerza
+    textoF.textContent = `F = ${F} N`;
+
+    // Actualizar brazo d (línea horizontal)
+    brazoD.setAttribute('x1', 50);
+    brazoD.setAttribute('y1', 115);
+    brazoD.setAttribute('x2', 50 + d * 200); // Escala: 1 m = 200 px
+    textoD.textContent = `d = ${d} m`;
+
+    // Actualizar arco de giro (opcional)
+    if (θ > 0 && θ < 180) {
+      arcoGiro.style.display = 'block';
+      textoArco.textContent = '↺'; // Antihorario
+    } else {
+      arcoGiro.style.display = 'none';
+      textoArco.textContent = '';
+    }
+
+    // Ajustar posición del texto del arco
+    textoArco.setAttribute('x', 95);
+    textoArco.setAttribute('y', 55);
+  }
+
+  // ▶️ Función para procesar el enunciado
+  document.getElementById('save-btn')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    const enunciado = document.getElementById('custom-statement')?.value.trim();
+
+    if (!enunciado) {
+      alert('⚠️ Por favor, escribe un enunciado.');
+      return;
+    }
+
+    try {
+      // ▶️ Extraer F, d, θ con expresiones regulares (formatos flexibles)
+      const patterns = [
+        /F\s*=\s*(\d+\.?\d*)\s*N\s*,\s*d\s*=\s*(\d+\.?\d*)\s*m\s*,\s*θ\s*=\s*(\d+\.?\d*)°/i,
+        /una\s+fuerza\s+de\s+(\d+\.?\d*)\s+N\s+aplicada\s+a\s+(\d+\.?\d*)\s+m\s+con\s+ángulo\s+de\s+(\d+\.?\d*)°/i,
+        /fuerza\s*:\s*(\d+\.?\d*)\s*N\s*,\s*brazo\s*:\s*(\d+\.?\d*)\s*m\s*,\s*ángulo\s*:\s*(\d+\.?\d*)°/i,
+        /una\s+fuerza\s+de\s+(\d+\.?\d*)\s+N\s+se\s+aplica\s+perpendicularmente\s+al\s+extremo\s+de\s+una\s+llave\s+de\s+(\d+\.?\d*)\s+m/i
+      ];
+
+      let F = null, d = null, θ = null;
+      for (const p of patterns) {
+        const match = enunciado.match(p);
+        if (match) { F = parseFloat(match[1]); d = parseFloat(match[2]); θ = parseFloat(match[3]) || 90; break; }
+      }
+
+      if (F === null || d === null || θ === null) {
+        throw new Error('No se encontraron los valores. Usa:\n- "F = 50 N, d = 0.3 m, θ = 90°"\n- "Una fuerza de 50 N aplicada a 0.3 m con ángulo de 90°"');
+      }
+
+      const M = F * d * Math.sin(θ * Math.PI / 180);
+      const sentido = M >= 0 ? 'antihorario' : 'horario';
+
+      // ▶️ Actualizar enunciado
+      document.getElementById('enunciado-texto').innerHTML = 
+        `Una fuerza de <strong>${F} N</strong> se aplica a <strong>${d} m</strong> del punto O con un ángulo de <strong>${θ}°</strong>.`;
+
+      // ▶️ Actualizar datos
+      document.querySelector('.problem-section.datos ul').innerHTML = `
+        <li><code>F = ${F} N</code></li>
+        <li><code>d = ${d} m</code></li>
+        <li><code>θ = ${θ}°</code></li>
+        <li><code>sen${θ}° = ${(Math.sin(θ * Math.PI / 180)).toFixed(3)}</code></li>
+      `;
+
+      // ▶️ Actualizar fórmula
+      document.querySelector('.problem-section.formula').innerHTML = `
+        <h3>🧮 Fórmula</h3>
+        <p><code>Mₒ = F · d · senθ</code></p>
+      `;
+
+      // ▶️ Actualizar sustitución
+      document.querySelector('.problem-section.sustitucion').innerHTML = `
+        <h3>✏️ Sustitución</h3>
+        <p><code>Mₒ = (${F}) × (${d}) × ${(Math.sin(θ * Math.PI / 180)).toFixed(3)} = ${M.toFixed(2)} N·m</code></p>
+      `;
+
+      // ▶️ Actualizar resultado final
+      document.querySelector('.resultado-final').innerHTML = 
+        `<strong>M = ${M.toFixed(2)} N·m</strong><br><small>(sentido ${sentido})</small>`;
+
+      // ▶️ Actualizar diagrama
+      actualizarDiagrama(F, d, θ);
+
+      // ▶️ Ocultar formulario
+      document.getElementById('custom-form').style.display = 'none';
+      alert('✅ ¡Problema actualizado con tus valores!');
+    } catch (error) {
+      console.error('❌ Error:', error);
+      alert(`⚠️ Error al procesar tu enunciado.\nFormatos válidos:\n- "F = 50 N, d = 0.3 m, θ = 90°"\n- "Una fuerza de 50 N aplicada a 0.3 m con ángulo de 90°"`);
+    }
+  });
+  </script>
 </body>
 </html>

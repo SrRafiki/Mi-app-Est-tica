@@ -17,7 +17,6 @@
     <div class="card">
       <h2>📌 Teoría</h2>
       <p>La <strong>resultante</strong> <strong>R</strong> es la fuerza equivalente a un sistema de fuerzas.</p>
-      <p><strong>Método analítico (componentes):</strong></p>
       <ul>
         <li><code>Rₓ = ΣFₓ</code></li>
         <li><code>Rᵧ = ΣFᵧ</code></li>
@@ -26,35 +25,21 @@
       </ul>
     </div>
 
-    <!-- ✅ Diagrama SVG: paralelogramo de fuerzas -->
     <div class="diagram">
       <h3>🔍 Diagrama: Resultante por método del paralelogramo</h3>
       <svg width="320" height="240" viewBox="-30 -30 350 270">
-        <!-- Origen -->
         <circle cx="50" cy="180" r="4" fill="#2c3e50" />
         <text x="40" y="170" class="vector-label">O</text>
-        
-        <!-- Fuerza F₁ (eje x) -->
         <line x1="50" y1="180" x2="200" y2="180" stroke="#3498db" stroke-width="2.5" marker-end="url(#arrowhead-blue)" />
-        <text x="115" y="168" fill="#3498db" font-weight="bold">F₁ = 60 N</text>
-        
-        <!-- Fuerza F₂ (eje y) -->
         <line x1="50" y1="180" x2="50" y2="60" stroke="#e74c3c" stroke-width="2.5" marker-end="url(#arrowhead-red)" />
-        <text x="20" y="120" fill="#e74c3c" font-weight="bold">F₂ = 80 N</text>
-        
-        <!-- Líneas auxiliares (paralelogramo) -->
         <line x1="200" y1="180" x2="200" y2="60" stroke="#bdc3c7" stroke-dasharray="4,4" />
         <line x1="50" y1="60" x2="200" y2="60" stroke="#bdc3c7" stroke-dasharray="4,4" />
-        
-        <!-- Resultante R -->
         <line x1="50" y1="180" x2="200" y2="60" stroke="#27ae60" stroke-width="3" marker-end="url(#arrowhead-green)" />
-        <text x="130" y="105" fill="#27ae60" font-weight="bold">R = 100 N</text>
-        
-        <!-- Ángulo θ -->
+        <text x="115" y="168" fill="#3498db">F₁ = 60 N</text>
+        <text x="20" y="120" fill="#e74c3c">F₂ = 80 N</text>
+        <text x="130" y="105" fill="#27ae60">R = 100 N</text>
         <path d="M65,170 A15,15 0 0 1 78,158" fill="none" stroke="#9b59b6" stroke-width="1.5" />
         <text x="80" y="148" fill="#9b59b6">θ</text>
-        
-        <!-- Definición de marcadores -->
         <defs>
           <marker id="arrowhead-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
             <polygon points="0 0, 10 3.5, 0 7" fill="#3498db" />
@@ -69,22 +54,24 @@
       </svg>
     </div>
 
-    <!-- ✅ Botón para enunciado personalizado -->
-    <button id="btn-custom" class="btn btn-toggle">✏️ Usar mi propio enunciado</button>
-    
+    <!-- ✅ Formulario con campos numéricos (funciona 100%) -->
+    <button id="btn-custom" class="btn btn-toggle">✏️ Resolver TU problema</button>
     <div id="custom-form" style="display:none;" class="custom-problem">
-      <h3>Escribe tu enunciado aquí:</h3>
-      <textarea id="custom-statement" class="custom-input" placeholder="Ej: Tres fuerzas actúan sobre un punto: F₁=30 N a 0°, F₂=40 N a 90°, F₃=20 N a 180°..."></textarea>
-      <button id="save-btn" class="btn">💾 Guardar y aplicar</button>
+      <h3>Ingresa tus fuerzas:</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:10px 0;">
+        <div><label>F₁ (N):</label> <input type="number" id="f1-val" value="60" class="custom-input" style="height:36px;"></div>
+        <div><label>θ₁ (°):</label> <input type="number" id="theta1-val" value="0" class="custom-input" style="height:36px;"></div>
+        <div><label>F₂ (N):</label> <input type="number" id="f2-val" value="80" class="custom-input" style="height:36px;"></div>
+        <div><label>θ₂ (°):</label> <input type="number" id="theta2-val" value="90" class="custom-input" style="height:36px;"></div>
+      </div>
+      <button id="save-btn" class="btn">🚀 Calcular y aplicar</button>
       <div id="custom-saved" class="custom-saved"></div>
     </div>
 
-    <!-- ✅ Problema estructurado -->
     <div class="problem-structured">
       <div class="problem-section enunciado">
         <h3>📌 Enunciado</h3>
-        <!-- ✅ CORREGIDO: <p> con id para que script.js lo encuentre -->
-        <p id="enunciado-texto">Dos fuerzas actúan sobre un punto: <strong>F₁ = 60 N</strong> a 0° (eje +x) y <strong>F₂ = 80 N</strong> a 90° (eje +y). Calcula la magnitud y dirección de la resultante.</p>
+        <p id="enunciado-texto">Dos fuerzas actúan sobre un punto: <strong>F₁ = 60 N</strong> a 0° y <strong>F₂ = 80 N</strong> a 90°. Calcula la resultante.</p>
       </div>
 
       <div class="problem-section datos">
@@ -115,8 +102,7 @@
 
       <div class="problem-section resultado">
         <h3>✅ Resultado</h3>
-        <p>La fuerza resultante es:</p>
-        <p class="resultado-final"><strong>R = 100 N</strong> a <strong>53.13°</strong> sobre el eje +x</p>
+        <p class="resultado-final"><strong>R = 100 N a 53.13° sobre el eje +x</strong></p>
       </div>
     </div>
   </div>

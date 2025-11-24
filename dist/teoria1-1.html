@@ -17,82 +17,72 @@
     <div class="card">
       <h2>📌 Teoría</h2>
       <ul>
-        <li><strong>Fuerza:</strong> Interacción que modifica el estado de movimiento o forma de un cuerpo. Unidad: newton (N).</li>
-        <li><strong>Estática:</strong> Estudio de los cuerpos en equilibrio (∑F = 0, ∑M = 0).</li>
+        <li><strong>Fuerza:</strong> Interacción que modifica el estado de movimiento.</li>
+        <li><strong>Estática:</strong> Estudio de cuerpos en equilibrio (∑F = 0).</li>
         <li><strong>Equilibrio traslacional:</strong> ∑Fₓ = 0 y ∑Fᵧ = 0.</li>
-        <li><strong>Equilibrio rotacional:</strong> ∑M = 0 respecto a cualquier punto.</li>
-        <li><strong>Cuerpo rígido:</strong> Idealización donde las distancias entre partículas no cambian.</li>
       </ul>
     </div>
 
-    <!-- ✅ Diagrama simple: cuerpo en equilibrio -->
     <div class="diagram">
-      <h3>🔍 Diagrama: Fuerzas sobre un libro en reposo</h3>
+      <h3>🔍 Fuerzas sobre un cuerpo en reposo</h3>
       <svg width="200" height="180" viewBox="-20 -20 220 200">
-        <!-- Libro -->
         <rect x="50" y="100" width="100" height="20" fill="#3498db" rx="4" />
-        
-        <!-- Peso (W) -->
-        <line x1="100" y1="100" x2="100" y2="150" class="force-line" stroke="#e74c3c" />
-        <text x="110" y="135" fill="#e74c3c">W</text>
-        
-        <!-- Normal (N) -->
-        <line x1="100" y1="120" x2="100" y2="70" class="force-line" stroke="#27ae60" />
-        <text x="110" y="90" fill="#27ae60">N</text>
-        
-        <!-- Mesa -->
+        <line x1="100" y1="100" x2="100" y2="150" stroke="#e74c3c" stroke-width="2" />
+        <line x1="100" y1="120" x2="100" y2="70" stroke="#27ae60" stroke-width="2" />
         <line x1="30" y1="122" x2="170" y2="122" stroke="#7f8c8d" stroke-width="3" />
+        <text x="110" y="135" fill="#e74c3c">W</text>
+        <text x="110" y="90" fill="#27ae60">N</text>
       </svg>
     </div>
 
-    <!-- ✅ Botón para enunciado personalizado -->
-    <button id="btn-custom" class="btn btn-toggle">✏️ Usar mi propio enunciado</button>
-    
+    <!-- ✅ Formulario con campos numéricos (igual que 1.2) -->
+    <button id="btn-custom" class="btn btn-toggle">✏️ Resolver TU problema</button>
     <div id="custom-form" style="display:none;" class="custom-problem">
-      <h3>Escribe tu enunciado aquí:</h3>
-      <textarea id="custom-statement" class="custom-input" placeholder="Ej: Un bloque de 2 kg descansa sobre una mesa inclinada a 30°..."></textarea>
-      <button id="save-btn" class="btn">💾 Guardar y aplicar</button>
+      <h3>Ingresa tus valores:</h3>
+      <div style="display:grid; grid-template-columns:1fr; gap:10px; margin:10px 0;">
+        <div>
+          <label>Masa (kg):</label>
+          <input type="number" id="m-val" value="1.2" class="custom-input" style="height:36px;">
+        </div>
+        <div>
+          <label>g (m/s²):</label>
+          <input type="number" id="g-val" value="9.8" class="custom-input" style="height:36px;">
+        </div>
+      </div>
+      <button id="save-btn" class="btn">🚀 Calcular y aplicar</button>
       <div id="custom-saved" class="custom-saved"></div>
     </div>
 
-    <!-- ✅ Problema estructurado -->
     <div class="problem-structured">
       <div class="problem-section enunciado">
         <h3>📌 Enunciado</h3>
-        <p>Un libro de 1.2 kg descansa sobre una mesa horizontal. Identifica y calcula todas las fuerzas que actúan sobre él. (g = 9.8 m/s²)</p>
+        <p id="enunciado-texto">Un cuerpo de 1.2 kg descansa sobre una mesa horizontal.</p>
       </div>
 
       <div class="problem-section datos">
         <h3>📊 Datos</h3>
         <ul>
-          <li>Masa: <code>m = 1.2 kg</code></li>
-          <li>Gravedad: <code>g = 9.8 m/s²</code></li>
-          <li>Peso: <code>W = mg</code></li>
-          <li>Superficie: horizontal, sin fricción</li>
+          <li><code>m = 1.2 kg</code></li>
+          <li><code>g = 9.8 m/s²</code></li>
+          <li><code>W = mg = 11.76 N</code></li>
         </ul>
       </div>
 
       <div class="problem-section formula">
         <h3>🧮 Fórmula</h3>
-        <p><strong>1ª Ley de Newton (equilibrio):</strong>  
-        <code>∑Fᵧ = 0 → N − W = 0</code></p>
+        <p><code>∑Fᵧ = 0 → N - W = 0</code></p>
         <p><code>W = mg</code></p>
       </div>
 
       <div class="problem-section sustitucion">
         <h3>✏️ Sustitución</h3>
-        <p><code>W = (1.2 kg)(9.8 m/s²) = 11.76 N</code></p>
+        <p><code>W = (1.2)(9.8) = 11.76 N</code></p>
         <p><code>N = W = 11.76 N</code></p>
       </div>
 
       <div class="problem-section resultado">
         <h3>✅ Resultado</h3>
-        <p>Fuerzas que actúan sobre el libro:</p>
-        <ul>
-          <li>Peso hacia abajo: <strong>11.76 N</strong></li>
-          <li>Fuerza normal hacia arriba: <strong>11.76 N</strong></li>
-        </ul>
-        <p class="resultado-final">→ El libro está en equilibrio traslacional.</p>
+        <p class="resultado-final"><strong>N = 11.76 N</strong>, <strong>W = 11.76 N</strong></p>
       </div>
     </div>
   </div>

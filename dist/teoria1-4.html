@@ -8,7 +8,7 @@
 </head>
 <body>
   <header>
-    <h1>1.4 Condiciones de equilibrio<br><small>Primera Ley de Newton</small></h1>
+    <h1>1.4 Condiciones de equilibrio<br><small>1ª Ley de Newton</small></h1>
   </header>
 
   <div class="container">
@@ -27,29 +27,30 @@
       </ul>
     </div>
 
-    <!-- ✅ Diagrama: cuerpo en equilibrio con dos cuerdas -->
+    <!-- ✅ Diagrama SVG dinámico -->
     <div class="diagram">
-      <h3>🔍 Diagrama: Cuerpo colgado por dos cuerdas</h3>
-      <svg width="280" height="220" viewBox="-20 -20 300 240">
-        <!-- Techo -->
-        <line x1="0" y1="40" x2="280" y2="40" stroke="#7f8c8d" stroke-width="3" />
+      <h3>🔍 Diagrama: Cuerpo colgado por dos cuerdas (ángulos desde la vertical)</h3>
+      <svg width="350" height="300" viewBox="-50 -50 400 350" id="diagrama-cuerdas">
+        <!-- Línea gris (techo) -->
+        <line x1="50" y1="0" x2="300" y2="0" stroke="#7f8c8d" stroke-width="4" />
         
-        <!-- Cuerdas -->
-        <line x1="80" y1="40" x2="140" y2="140" stroke="#3498db" stroke-width="2" />
-        <line x1="200" y1="40" x2="140" y2="140" stroke="#e74c3c" stroke-width="2" />
+        <!-- Masa (fija en 175, 150) -->
+        <circle cx="175" cy="150" r="15" fill="#2c3e50" id="masa" />
+        <text x="170" y="155" fill="white" id="texto-masa">m</text>
         
-        <!-- Ángulos -->
-        <text x="95" y="65" fill="#3498db">30°</text>
-        <text x="175" y="65" fill="#e74c3c">60°</text>
+        <!-- Peso W -->
+        <line x1="175" y1="150" x2="175" y2="200" stroke="#9b59b6" stroke-width="2" marker-end="url(#arrowhead)" id="peso" />
+        <text x="180" y="190" fill="#9b59b6" id="texto-peso">W</text>
         
-        <!-- Masa -->
-        <circle cx="140" cy="140" r="15" fill="#2c3e50" />
-        <text x="135" y="145" fill="white">m</text>
+        <!-- Cuerda 1 (azul) -->
+        <line x1="175" y1="150" x2="125" y2="0" stroke="#3498db" stroke-width="2" id="cuerda1" />
+        <text x="130" y="40" fill="#3498db" id="angulo1">30°</text>
         
-        <!-- Peso -->
-        <line x1="140" y1="140" x2="140" y2="180" stroke="#9b59b6" stroke-width="2" marker-end="url(#arrowhead)" />
-        <text x="150" y="165" fill="#9b59b6">W</text>
+        <!-- Cuerda 2 (roja) -->
+        <line x1="175" y1="150" x2="225" y2="0" stroke="#e74c3c" stroke-width="2" id="cuerda2" />
+        <text x="210" y="40" fill="#e74c3c" id="angulo2">60°</text>
         
+        <!-- Definición de flecha -->
         <defs>
           <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
             <polygon points="0 0, 8 3, 0 6" fill="#9b59b6" />
@@ -58,62 +59,51 @@
       </svg>
     </div>
 
-    <!-- ✅ Botón para enunciado personalizado -->
-    <button id="btn-custom" class="btn btn-toggle">✏️ Usar mi propio enunciado</button>
-    
+    <!-- ✅ Botón y formulario de texto libre -->
+    <button id="btn-custom" class="btn btn-toggle">✏️ Resolver TU problema</button>
     <div id="custom-form" style="display:none;" class="custom-problem">
-      <h3>Escribe tu enunciado aquí:</h3>
-      <textarea id="custom-statement" class="custom-input" placeholder="Ej: Un semáforo de 40 kg cuelga de dos cables que forman ángulos de 40° y 50°..."></textarea>
-      <button id="save-btn" class="btn">💾 Guardar y aplicar</button>
+      <h3>Escribe tu enunciado:</h3>
+      <textarea id="custom-statement" class="custom-input" placeholder="Ej: Un cuerpo de 5 kg cuelga con ángulos de 30° y 60° desde la vertical." rows="3"></textarea>
+      <button id="save-btn" class="btn">🚀 Calcular y aplicar</button>
       <div id="custom-saved" class="custom-saved"></div>
     </div>
 
-    <!-- ✅ Problema estructurado -->
     <div class="problem-structured">
       <div class="problem-section enunciado">
         <h3>📌 Enunciado</h3>
-        <p>Un cuerpo de 5 kg cuelga en reposo de dos cuerdas, como se muestra en la figura (ángulos: 30° y 60° con la horizontal). Calcula las tensiones <strong>T₁</strong> y <strong>T₂</strong> en las cuerdas. (g = 9.8 m/s²)</p>
+        <p id="enunciado-texto">Un cuerpo de 5 kg cuelga en reposo de dos cuerdas con ángulos de 30° y 60° desde la vertical.</p>
       </div>
 
       <div class="problem-section datos">
         <h3>📊 Datos</h3>
         <ul>
-          <li>Masa: <code>m = 5 kg</code></li>
-          <li>Gravedad: <code>g = 9.8 m/s²</code></li>
-          <li>Peso: <code>W = mg = 49 N</code></li>
-          <li>Ángulo de T₁: <code>θ₁ = 30°</code></li>
-          <li>Ángulo de T₂: <code>θ₂ = 60°</code></li>
+          <li><code>m = 5 kg</code></li>
+          <li><code>W = 49 N</code></li>
+          <li><code>θ₁ = 30°, θ₂ = 60°</code></li>
         </ul>
       </div>
 
       <div class="problem-section formula">
         <h3>🧮 Fórmulas</h3>
         <ul>
-          <li><strong>∑Fₓ = 0</strong> → <code>T₂·cos60° − T₁·cos30° = 0</code></li>
-          <li><strong>∑Fᵧ = 0</strong> → <code>T₁·sen30° + T₂·sen60° − W = 0</code></li>
+          <li><code>∑Fₓ = 0 → T₂·senθ₂ = T₁·senθ₁</code></li>
+          <li><code>∑Fᵧ = 0 → T₁·cosθ₁ + T₂·cosθ₂ = W</code></li>
         </ul>
       </div>
 
       <div class="problem-section sustitucion">
         <h3>✏️ Sustitución</h3>
-        <p><strong>Ecuación X:</strong>  
-        <code>T₂·(0.5) − T₁·(√3/2) = 0</code>  
-        → <code>T₂ = T₁·√3</code></p>
-
-        <p><strong>Ecuación Y:</strong>  
-        <code>T₁·(0.5) + T₂·(√3/2) = 49</code></p>
-
-        <p>Sustituimos <code>T₂</code>:  
-        <code>0.5T₁ + (√3/2)(√3 T₁) = 49</code>  
-        <code>0.5T₁ + (3/2)T₁ = 49</code>  
-        <code>2T₁ = 49 → T₁ = 24.5 N</code></p>
-
-        <p><code>T₂ = 24.5 × √3 ≈ 42.44 N</code></p>
+        <p><code>T₂ = T₁·sen30°/sen60° = T₁·(0.5)/(√3/2) = T₁·(1/√3)</code></p>
+        <p><code>T₁·cos30° + T₁·(1/√3)·cos60° = 49</code></p>
+        <p><code>T₁·(√3/2) + T₁·(1/√3)·(0.5) = 49</code></p>
+        <p><code>T₁·(√3/2 + 1/(2√3)) = 49</code></p>
+        <p><code>T₁·( (3+1)/(2√3) ) = 49 → T₁ = 49·(2√3)/4 = 42.44 N</code></p>
+        <p><code>T₂ = 42.44 / √3 ≈ 24.5 N</code></p>
       </div>
 
       <div class="problem-section resultado">
         <h3>✅ Resultado</h3>
-        <p class="resultado-final"><strong>T₁ = 24.5 N</strong>, &nbsp; <strong>T₂ ≈ 42.4 N</strong></p>
+        <p class="resultado-final"><strong>T₁ = 42.4 N</strong>, <strong>T₂ = 24.5 N</strong></p>
       </div>
     </div>
   </div>
@@ -123,5 +113,118 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+  // ▶️ Función para actualizar el diagrama SVG
+  function actualizarDiagrama(θ1, θ2) {
+    const svg = document.getElementById('diagrama-cuerdas');
+    const cuerda1 = document.getElementById('cuerda1');
+    const cuerda2 = document.getElementById('cuerda2');
+    const angulo1 = document.getElementById('angulo1');
+    const angulo2 = document.getElementById('angulo2');
+
+    // Coordenadas del punto de anclaje (línea gris)
+    const x1 = 175 - 60 * Math.sin(θ1 * Math.PI / 180);
+    const y1 = 0 + 60 * Math.cos(θ1 * Math.PI / 180);
+    const x2 = 175 + 60 * Math.sin(θ2 * Math.PI / 180);
+    const y2 = 0 + 60 * Math.cos(θ2 * Math.PI / 180);
+
+    // Actualizar líneas
+    cuerda1.setAttribute('x1', x1);
+    cuerda1.setAttribute('y1', y1);
+    cuerda2.setAttribute('x1', x2);
+    cuerda2.setAttribute('y1', y2);
+
+    // Actualizar ángulos
+    angulo1.textContent = `${θ1}°`;
+    angulo2.textContent = `${θ2}°`;
+
+    // Ajustar posición de los textos
+    angulo1.setAttribute('x', x1 + 5);
+    angulo1.setAttribute('y', y1 - 10);
+    angulo2.setAttribute('x', x2 - 30);
+    angulo2.setAttribute('y', y2 - 10);
+  }
+
+  // ▶️ Función para procesar el enunciado
+  document.getElementById('save-btn')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    const enunciado = document.getElementById('custom-statement')?.value.trim();
+
+    if (!enunciado) {
+      alert('⚠️ Por favor, escribe un enunciado.');
+      return;
+    }
+
+    try {
+      // ▶️ Extraer m, θ1, θ2 con expresiones regulares
+      const patterns = [
+        /un\s+cuerpo\s+de\s+(\d+\.?\d*)\s+kg\s+cuelga\s+con\s+ángulos\s+de\s+(\d+\.?\d*)°\s+y\s+(\d+\.?\d*)°\s+desde\s+la\s+vertical/i,
+        /masa\s*:\s*(\d+\.?\d*)\s*kg\s*,\s*ángulos\s*:\s*(\d+\.?\d*)°\s*y\s*(\d+\.?\d*)°\s+desde\s+la\s+vertical/i,
+        /cuerpo\s+de\s+(\d+\.?\d*)\s+kg\s+cuelga\s+con\s+ángulos\s+de\s+(\d+\.?\d*)°\s+y\s+(\d+\.?\d*)°\s+desde\s+la\s+vertical/i,
+        /un\s+cuerpo\s+de\s+(\d+\.?\d*)\s+kg\s+cuelga\s+en\s+reposo\s+de\s+dos\s+cuerdas\s+con\s+ángulos\s+de\s+(\d+\.?\d*)°\s+y\s+(\d+\.?\d*)°\s+desde\s+la\s+vertical/i
+      ];
+
+      let m = null, θ1 = null, θ2 = null;
+      for (const p of patterns) {
+        const match = enunciado.match(p);
+        if (match) { m = parseFloat(match[1]); θ1 = parseFloat(match[2]); θ2 = parseFloat(match[3]); break; }
+      }
+
+      if (m === null || θ1 === null || θ2 === null) {
+        throw new Error('No se encontraron los valores. Usa: "Un cuerpo de 5 kg cuelga con ángulos de 30° y 60° desde la vertical."');
+      }
+
+      const g = 9.8;
+      const W = m * g;
+      const r1 = θ1 * Math.PI / 180;
+      const r2 = θ2 * Math.PI / 180;
+      const T1 = W / (Math.cos(r1) + Math.sin(r1) * Math.tan(r2));
+      const T2 = T1 * Math.sin(r1) / Math.sin(r2);
+
+      // ▶️ Actualizar enunciado
+      document.getElementById('enunciado-texto').innerHTML = 
+        `Un cuerpo de <strong>${m} kg</strong> cuelga con ángulos de <strong>${θ1}°</strong> y <strong>${θ2}°</strong> desde la vertical.`;
+
+      // ▶️ Actualizar datos
+      document.querySelector('.problem-section.datos ul').innerHTML = `
+        <li><code>m = ${m} kg</code></li>
+        <li><code>W = ${W.toFixed(1)} N</code></li>
+        <li><code>θ₁ = ${θ1}°, θ₂ = ${θ2}°</code></li>
+      `;
+
+      // ▶️ Actualizar fórmulas
+      document.querySelector('.problem-section.formula').innerHTML = `
+        <h3>🧮 Fórmulas</h3>
+        <ul>
+          <li><code>∑Fₓ = 0 → T₂·senθ₂ = T₁·senθ₁</code></li>
+          <li><code>∑Fᵧ = 0 → T₁·cosθ₁ + T₂·cosθ₂ = W</code></li>
+        </ul>
+      `;
+
+      // ▶️ Actualizar sustitución
+      document.querySelector('.problem-section.sustitucion').innerHTML = `
+        <h3>✏️ Sustitución</h3>
+        <p><code>T₂ = T₁·sen${θ1}°/sen${θ2}° = T₁·${(Math.sin(r1)/Math.sin(r2)).toFixed(2)}</code></p>
+        <p><code>T₁·cos${θ1}° + T₁·${(Math.sin(r1)/Math.sin(r2)).toFixed(2)}·cos${θ2}° = ${W}</code></p>
+        <p><code>T₁ = ${T1.toFixed(1)} N</code></p>
+        <p><code>T₂ = ${T2.toFixed(1)} N</code></p>
+      `;
+
+      // ▶️ Actualizar resultado final
+      document.querySelector('.resultado-final').innerHTML = 
+        `<strong>T₁ = ${T1.toFixed(1)} N</strong>, <strong>T₂ = ${T2.toFixed(1)} N</strong>`;
+
+      // ▶️ Actualizar diagrama
+      actualizarDiagrama(θ1, θ2);
+
+      // ▶️ Ocultar formulario
+      document.getElementById('custom-form').style.display = 'none';
+      alert('✅ ¡Problema actualizado con tus valores!');
+    } catch (error) {
+      console.error('❌ Error:', error);
+      alert(`⚠️ Error al procesar tu enunciado.\nEjemplo válido:\n"Un cuerpo de 5 kg cuelga con ángulos de 30° y 60° desde la vertical."`);
+    }
+  });
+  </script>
 </body>
 </html>
